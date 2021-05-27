@@ -7,11 +7,21 @@ import {
 class CategoriesRepository implements ICategoriesRepository {
   private categories: Category[];
 
-  constructor() {
+  private static INSTANCE: CategoriesRepository;
+
+  private constructor() {
     this.categories = [];
   }
 
-  create({ name, description }: ICreateCategoryDTO): void {
+  public static getInstance(): CategoriesRepository {
+    if (!CategoriesRepository.INSTANCE) {
+      CategoriesRepository.INSTANCE = new CategoriesRepository();
+    }
+
+    return CategoriesRepository.INSTANCE;
+  }
+
+  create({ name, description }: ICreateCategoryDTO): Category {
     const category = new Category();
 
     Object.assign(category, {
@@ -21,6 +31,8 @@ class CategoriesRepository implements ICategoriesRepository {
     });
 
     this.categories.push(category);
+
+    return category;
   }
 
   list(): Category[] {

@@ -7,7 +7,7 @@ interface ICreateSpecificationDTO {
 
 interface ISpecificationRepository {
   findByName(name: string): Specification;
-  create({ name, description }: ICreateSpecificationDTO): void;
+  create({ name, description }: ICreateSpecificationDTO): Specification;
 }
 
 export { ICreateSpecificationDTO, ISpecificationRepository };
