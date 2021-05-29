@@ -32,6 +32,7 @@ class ImportCategoriesService {
           });
         })
         .on("end", () => {
+          fs.promises.unlink(file.path);
           resolse(categories);
         })
         .on("error", (err) => {
