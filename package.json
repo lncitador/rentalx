@@ -18,11 +18,13 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
+    "@types/csv-parse": "^1.2.2",
     "@types/express": "^4.17.11",
     "@types/multer": "^1.4.5",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.25.0",
     "@typescript-eslint/parser": "^4.25.0",
+    "csv-parse": "^4.15.4",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "express": "^4.17.1",

@@ -19,7 +19,9 @@ const listCategoryController = new ListCategoriesController(
   listCategoriesService
 );
 
-const importCategoriesService = new ImportCategoriesService();
+const importCategoriesService = new ImportCategoriesService(
+  categoriesRepository
+);
 const importCategoriesController = new ImportCategoriesController(
   importCategoriesService
 );
