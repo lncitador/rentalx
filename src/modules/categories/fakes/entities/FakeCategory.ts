@@ -1,6 +1,8 @@
 import { v4 as uuidV4 } from "uuid";
 
-class Category {
+import ICategory from "../../model/ICategory";
+
+class FakeCategory implements ICategory {
   id?: string;
   name: string;
   description: string;
@@ -13,4 +15,4 @@ class Category {
   }
 }
 
-export { Category };
+export { FakeCategory };

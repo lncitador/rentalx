@@ -1,9 +1,9 @@
-import { SpecificationRepository } from "@modules/specifications/repositories/fakes/FakeSpecificationRepository";
+import { FakeSpecificationRepository } from "@modules/specifications/fakes/repositories/FakeSpecificationRepository";
 import { CreateSpecificationService } from "@modules/specifications/services/CreateSpecificationService";
 
 import CreateSpecificationController from "./CreateSpecificationController";
 
-const specificationRepository = SpecificationRepository.getInstace();
+const specificationRepository = FakeSpecificationRepository.getInstace();
 
 const createSpecificationService = new CreateSpecificationService(
   specificationRepository

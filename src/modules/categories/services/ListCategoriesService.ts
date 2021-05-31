@@ -1,4 +1,4 @@
-import { Category } from "../model/Category";
+import Category from "../model/ICategory";
 import { ICategoriesRepository } from "../repositories/ICategoriesRepository";
 
 class ListCategoriesService {

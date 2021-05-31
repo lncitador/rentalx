@@ -7,6 +7,7 @@ import { routes } from "./routes";
 import swaggerFile from "./swagger.json";
 
 import "express-async-errors";
+import "reflect-metadata";
 
 const app = express();
 

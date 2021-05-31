@@ -1,6 +1,6 @@
 import AppError from "@shared/errors/AppError";
 
-import { Specification } from "../model/Specification";
+import Specification from "../model/ISpecification";
 import { ISpecificationRepository } from "../repositories/ISpecificationRepository";
 
 interface IRequest {

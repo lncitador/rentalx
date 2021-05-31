@@ -1,6 +1,6 @@
 import AppError from "@shared/errors/AppError";
 
-import { Category } from "../model/Category";
+import Category from "../model/ICategory";
 import { ICategoriesRepository } from "../repositories/ICategoriesRepository";
 
 interface IRequest {

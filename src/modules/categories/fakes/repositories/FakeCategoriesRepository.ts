@@ -1,11 +1,11 @@
-import { Category } from "../../model/Category";
 import {
   ICategoriesRepository,
   ICreateCategoryDTO,
-} from "../ICategoriesRepository";
+} from "../../repositories/ICategoriesRepository";
+import { FakeCategory } from "../entities/FakeCategory";
 
 class CategoriesRepository implements ICategoriesRepository {
-  private categories: Category[];
+  private categories: FakeCategory[];
 
   private static INSTANCE: CategoriesRepository;
 
@@ -21,8 +21,8 @@ class CategoriesRepository implements ICategoriesRepository {
     return CategoriesRepository.INSTANCE;
   }
 
-  create({ name, description }: ICreateCategoryDTO): Category {
-    const category = new Category();
+  create({ name, description }: ICreateCategoryDTO): FakeCategory {
+    const category = new FakeCategory();
 
     Object.assign(category, {
       name,
@@ -35,11 +35,11 @@ class CategoriesRepository implements ICategoriesRepository {
     return category;
   }
 
-  list(): Category[] {
+  list(): FakeCategory[] {
     return this.categories;
   }
 
-  findByName(name: string): Category {
+  findByName(name: string): FakeCategory {
     const category = this.categories.find((category) => category.name === name);
     return category;
   }

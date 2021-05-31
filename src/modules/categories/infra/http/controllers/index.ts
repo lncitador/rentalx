@@ -1,4 +1,4 @@
-import { CategoriesRepository } from "@modules/categories/repositories/fakes/FakeCategoriesRepository";
+import { CategoriesRepository } from "@modules/categories/fakes/repositories/FakeCategoriesRepository";
 import { CreateCategoryService } from "@modules/categories/services/CreateCategoryService";
 import { ImportCategoriesService } from "@modules/categories/services/ImportCategoriesService";
 import { ListCategoriesService } from "@modules/categories/services/ListCategoriesService";
