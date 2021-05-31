@@ -6,6 +6,7 @@ import AppError from "@shared/errors/AppError";
 import { routes } from "./routes";
 import swaggerFile from "./swagger.json";
 
+import "@shared/infra/typeorm";
 import "express-async-errors";
 import "reflect-metadata";
 
