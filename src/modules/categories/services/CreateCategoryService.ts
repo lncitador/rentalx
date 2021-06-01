@@ -1,3 +1,5 @@
+import { inject, injectable } from "tsyringe";
+
 import AppError from "@shared/errors/AppError";
 
 import Category from "../model/ICategory";
@@ -8,8 +10,12 @@ interface IRequest {
   description: string;
 }
 
+@injectable()
 class CreateCategoryService {
-  constructor(private categoriesRepository: ICategoriesRepository) {}
+  constructor(
+    @inject("CategoriesRepository")
+    private categoriesRepository: ICategoriesRepository
+  ) {}
   public async execute({ name, description }: IRequest): Promise<Category> {
     const categoryAlreadyExist = await this.categoriesRepository.findByName(
       name

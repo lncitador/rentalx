@@ -10,6 +10,7 @@ import swaggerFile from "./swagger.json";
 
 import "express-async-errors";
 import "reflect-metadata";
+import "@shared/container";
 
 const app = express();
 
