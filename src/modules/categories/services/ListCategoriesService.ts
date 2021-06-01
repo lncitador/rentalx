@@ -3,8 +3,8 @@ import { ICategoriesRepository } from "../repositories/ICategoriesRepository";
 
 class ListCategoriesService {
   constructor(private categoriesRepository: ICategoriesRepository) {}
-  public execute(): Category[] {
-    const all = this.categoriesRepository.list();
+  public async execute(): Promise<Category[]> {
+    const all = await this.categoriesRepository.list();
 
     return all;
   }

@@ -4,14 +4,14 @@ import { Request, Response } from "express";
 export default class CreateCategoryController {
   constructor(private createCategoryService: CreateCategoryService) {}
 
-  public handle(request: Request, response: Response): Response {
+  public async handle(request: Request, response: Response): Promise<Response> {
     const { name, description } = request.body;
 
-    const category = this.createCategoryService.execute({
+    const category = await this.createCategoryService.execute({
       name,
       description,
     });
 
-    return response.status(201).json({ category });
+    return response.status(201).json(category);
   }
 }

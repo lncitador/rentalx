@@ -3,10 +3,10 @@ import { Request, Response } from "express";
 
 export default class ImportCategoriesController {
   constructor(private importCategoriesService: ImportCategoriesService) {}
-  public handle(request: Request, response: Response): Response {
+  public async handle(request: Request, response: Response): Promise<Response> {
     const { file } = request;
 
-    this.importCategoriesService.execute(file);
+    await this.importCategoriesService.execute(file);
 
     return response.send();
   }

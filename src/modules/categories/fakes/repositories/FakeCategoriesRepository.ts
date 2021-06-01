@@ -4,24 +4,27 @@ import {
 } from "../../repositories/ICategoriesRepository";
 import { FakeCategory } from "../entities/FakeCategory";
 
-class CategoriesRepository implements ICategoriesRepository {
+class FakeCategoriesRepository implements ICategoriesRepository {
   private categories: FakeCategory[];
 
-  private static INSTANCE: CategoriesRepository;
+  private static INSTANCE: FakeCategoriesRepository;
 
   private constructor() {
     this.categories = [];
   }
 
-  public static getInstance(): CategoriesRepository {
-    if (!CategoriesRepository.INSTANCE) {
-      CategoriesRepository.INSTANCE = new CategoriesRepository();
+  public static getInstance(): FakeCategoriesRepository {
+    if (!FakeCategoriesRepository.INSTANCE) {
+      FakeCategoriesRepository.INSTANCE = new FakeCategoriesRepository();
     }
 
-    return CategoriesRepository.INSTANCE;
+    return FakeCategoriesRepository.INSTANCE;
   }
 
-  create({ name, description }: ICreateCategoryDTO): FakeCategory {
+  public async create({
+    name,
+    description,
+  }: ICreateCategoryDTO): Promise<FakeCategory> {
     const category = new FakeCategory();
 
     Object.assign(category, {
@@ -35,14 +38,14 @@ class CategoriesRepository implements ICategoriesRepository {
     return category;
   }
 
-  list(): FakeCategory[] {
+  public async list(): Promise<FakeCategory[]> {
     return this.categories;
   }
 
-  findByName(name: string): FakeCategory {
+  public async findByName(name: string): Promise<FakeCategory> {
     const category = this.categories.find((category) => category.name === name);
     return category;
   }
 }
 
-export { CategoriesRepository };
+export { FakeCategoriesRepository };
