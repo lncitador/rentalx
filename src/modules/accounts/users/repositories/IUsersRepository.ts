@@ -1,0 +1,20 @@
+import IUsers from "../model/IUsers";
+
+interface ICreateUserDTO {
+  name: string;
+  password: string;
+  email: string;
+  driver_license: string;
+}
+
+interface IUsersRepository {
+  findByEmail(email: string): Promise<IUsers | undefined>;
+  create({
+    name,
+    email,
+    password,
+    driver_license,
+  }: ICreateUserDTO): Promise<IUsers>;
+}
+
+export { IUsersRepository, ICreateUserDTO };

@@ -9,10 +9,13 @@
     }
   },
   "paths": {
-    "/Categories": {
+    "/categories": {
       "post": {
-        "tags": ["Category"],
-        "summary": "Create a category",
+        "tags": [
+          "Category"
+        ],
+        "summary": "Create a new category",
+        "description": "Create a new category",
         "requestBody": {
           "content": {
             "application/json": {
@@ -44,9 +47,11 @@
         }
       },
       "get": {
-        "tags": ["Category"],
-        "summary":"List all categories",
-        "description":"List all categories",
+        "tags": [
+          "Category"
+        ],
+        "summary": "List all categories",
+        "description": "List all categories",
         "responses": {
           "200": {
             "description": "Success",
@@ -61,7 +66,7 @@
                         "type": "string"
                       },
                       "description": {
-                        "type": "string"  
+                        "type": "string"
                       }
                     }
                   }
@@ -69,6 +74,74 @@
               }
             }
           }
+        }
+      }
+    },
+    "/categories/import": {
+      "post": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Import categories",
+        "description": "Import categories",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/specifications": {
+      "post": {
+        "tags": [
+          "Specification"
+        ],
+        "summary": "Create a new Specification",
+        "description": "Create a new Specification",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Specification"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Specification already exist!"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Specification": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
         }
       }
     }
