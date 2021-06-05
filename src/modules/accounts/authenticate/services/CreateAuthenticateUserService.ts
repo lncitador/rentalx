@@ -4,6 +4,8 @@ import { IUsersRepository } from "@modules/accounts/users/repositories/IUsersRep
 import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
 
+import { AppError } from "@shared/errors/AppError";
+
 interface IRequest {
   email: string;
   password: string;
@@ -31,7 +33,7 @@ class CreateAuthenticateUserService {
     const user = await this.userRepository.findByEmail(email);
 
     if (!user) {
-      throw new Error("Email or password incorrect");
+      throw new AppError("Email or password incorrect", 401);
     }
 
     const comparePassword = await this.hashProvider.compareHash(
@@ -40,7 +42,7 @@ class CreateAuthenticateUserService {
     );
 
     if (!comparePassword) {
-      throw new Error("Email or password incorrect");
+      throw new AppError("Email or password incorrect", 401);
     }
 
     const { expiresIn, secret } = Auth.jwt;

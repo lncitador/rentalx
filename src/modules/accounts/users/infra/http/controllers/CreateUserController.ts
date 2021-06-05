@@ -8,17 +8,13 @@ export default class CreateUserController {
 
     const createUserService = container.resolve(CreateUserService);
 
-    try {
-      const user = await createUserService.execute({
-        name,
-        email,
-        password,
-        driver_license,
-      });
+    const user = await createUserService.execute({
+      name,
+      email,
+      password,
+      driver_license,
+    });
 
-      return response.status(201).json({ user });
-    } catch (error) {
-      return response.status(400).json({ error: error.message });
-    }
+    return response.status(201).json({ user });
   }
 }

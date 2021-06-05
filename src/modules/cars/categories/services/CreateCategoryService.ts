@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import AppError from "@shared/errors/AppError";
+import { AppError } from "@shared/errors/AppError";
 
 import Category from "../model/ICategory";
 import { ICategoriesRepository } from "../repositories/ICategoriesRepository";

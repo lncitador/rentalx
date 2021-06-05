@@ -9,13 +9,9 @@ class CreateAuthenticateUserController {
 
     const createSession = container.resolve(CreateAuthenticateUserService);
 
-    try {
-      const authenticateUser = await createSession.execute({ email, password });
+    const authenticateUser = await createSession.execute({ email, password });
 
-      return response.status(201).json(authenticateUser);
-    } catch (error) {
-      return response.status(401).json({ error: error.message });
-    }
+    return response.status(201).json(authenticateUser);
   }
 }
 
