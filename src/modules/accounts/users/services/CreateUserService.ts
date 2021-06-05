@@ -2,6 +2,7 @@ import { inject, injectable } from "tsyringe";
 
 import AppError from "@shared/errors/AppError";
 
+import IHashProvider from "../model/IHashProvider";
 import IUsers from "../model/IUsers";
 import { IUsersRepository } from "../repositories/IUsersRepository";
 
@@ -16,7 +17,10 @@ interface IRequest {
 class CreateUserService {
   constructor(
     @inject("UsersRepository")
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
+
+    @inject("HashProvider")
+    private hashProvider: IHashProvider
   ) {}
 
   public async execute({
@@ -30,10 +34,13 @@ class CreateUserService {
     if (userAlreadyExist) {
       throw new AppError("Email already exists!");
     }
+
+    const hashedPassword = await this.hashProvider.generatehash(password);
+
     const user = await this.usersRepository.create({
       name,
       email,
-      password,
+      password: hashedPassword,
       driver_license,
     });
 

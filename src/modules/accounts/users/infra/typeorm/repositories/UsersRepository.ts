@@ -19,7 +19,6 @@ class UsersRepository implements IUsersRepository {
         email,
       },
     });
-
     return user;
   }
 
