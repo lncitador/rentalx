@@ -1,3 +1,4 @@
+import ensureAutheticated from "@modules/accounts/authenticate/infra/middlewares/ensureAuthenticate";
 import { Router } from "express";
 import multer from "multer";
 
@@ -15,15 +16,16 @@ const upload = multer({
   dest: "./tmp",
 });
 
-categoriesRouter.post("/", createCategoryController.handle);
-
 categoriesRouter.get("/", listCategoryController.handle);
+
+categoriesRouter.use(ensureAutheticated);
+
+categoriesRouter.post("/", createCategoryController.handle);
 
 categoriesRouter.post(
   "/import",
   upload.single("file"),
   importCategoriesController.handle
 );
-// categoriesRoutes.get("/", listCategoryController.handle);
 
 export { categoriesRouter };

@@ -1,3 +1,4 @@
+import Auth from "@config/Auth";
 import IHashProvider from "@modules/accounts/users/model/IHashProvider";
 import { IUsersRepository } from "@modules/accounts/users/repositories/IUsersRepository";
 import { sign } from "jsonwebtoken";
@@ -42,9 +43,11 @@ class CreateAuthenticateUserService {
       throw new Error("Email or password incorrect");
     }
 
-    const token = sign({}, "SECRETMD5HASH", {
+    const { expiresIn, secret } = Auth.jwt;
+
+    const token = sign({}, secret, {
       subject: user.id,
-      expiresIn: "1d",
+      expiresIn,
     });
 
     const response = {
