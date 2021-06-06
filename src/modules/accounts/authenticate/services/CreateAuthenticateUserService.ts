@@ -1,5 +1,5 @@
 import Auth from "@config/Auth";
-import IHashProvider from "@modules/accounts/users/model/IHashProvider";
+import IHashProvider from "@modules/accounts/users/providers/models/IHashProvider";
 import { IUsersRepository } from "@modules/accounts/users/repositories/IUsersRepository";
 import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";

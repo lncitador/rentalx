@@ -16,6 +16,7 @@ interface IUsersRepository {
     password,
     driver_license,
   }: ICreateUserDTO): Promise<IUsers>;
+  save(user: IUsers): Promise<IUsers>;
 }
 
 export { IUsersRepository, ICreateUserDTO };

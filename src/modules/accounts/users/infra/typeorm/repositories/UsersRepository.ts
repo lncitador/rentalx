@@ -13,6 +13,12 @@ class UsersRepository implements IUsersRepository {
   constructor() {
     this.ormRepository = getRepository(User);
   }
+  public async save(user: IUsers): Promise<IUsers> {
+    const savedUser = await this.ormRepository.save(user);
+
+    return savedUser;
+  }
+
   public async findById(id: string): Promise<IUsers> {
     const user = await this.ormRepository.findOne({
       where: { id },

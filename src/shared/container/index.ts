@@ -7,6 +7,7 @@ import { ISpecificationRepository } from "@modules/cars/specifications/repositor
 import { container } from "tsyringe";
 
 import "@modules/accounts/users/providers";
+import "@shared/providers";
 
 container.registerSingleton<ICategoriesRepository>(
   "CategoriesRepository",

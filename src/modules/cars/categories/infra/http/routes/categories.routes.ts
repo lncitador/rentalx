@@ -1,3 +1,4 @@
+import uploadConfig from "@config/Upload";
 import ensureAutheticated from "@modules/accounts/authenticate/infra/middlewares/ensureAuthenticate";
 import { Router } from "express";
 import multer from "multer";
@@ -12,9 +13,7 @@ const createCategoryController = new CreateCategoryController();
 const listCategoryController = new ListCategoriesController();
 const importCategoriesController = new ImportCategoriesController();
 
-const upload = multer({
-  dest: "./tmp",
-});
+const upload = multer(uploadConfig);
 
 categoriesRouter.get("/", listCategoryController.handle);
 
