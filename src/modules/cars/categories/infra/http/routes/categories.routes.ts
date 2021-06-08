@@ -1,7 +1,8 @@
-import uploadConfig from "@config/Upload";
-import ensureAutheticated from "@modules/accounts/authenticate/infra/middlewares/ensureAuthenticate";
 import { Router } from "express";
 import multer from "multer";
+
+import uploadConfig from "@config/Upload";
+import ensureAutheticated from "@modules/accounts/authenticate/infra/middlewares/ensureAuthenticate";
 
 import CreateCategoryController from "../controllers/CreateCategoryController";
 import ImportCategoriesController from "../controllers/ImportCategoriesController";

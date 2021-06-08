@@ -1,9 +1,10 @@
-import Auth from "@config/Auth";
-import IHashProvider from "@modules/accounts/users/providers/models/IHashProvider";
-import { IUsersRepository } from "@modules/accounts/users/repositories/IUsersRepository";
+import "reflect-metadata";
 import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
 
+import Auth from "@config/Auth";
+import IHashProvider from "@modules/accounts/users/providers/models/IHashProvider";
+import { IUsersRepository } from "@modules/accounts/users/repositories/IUsersRepository";
 import { AppError } from "@shared/errors/AppError";
 
 interface IRequest {

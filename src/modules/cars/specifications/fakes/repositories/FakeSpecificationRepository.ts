@@ -5,30 +5,19 @@ import {
 import { FakeSpecification } from "../entities/FakeSpecification";
 
 class FakeSpecificationRepository implements ISpecificationRepository {
-  private specifications: FakeSpecification[];
+  private specifications: FakeSpecification[] = [];
 
-  private static INSTANCE: FakeSpecificationRepository;
-
-  private constructor() {
-    this.specifications = [];
-  }
-
-  public static getInstace(): FakeSpecificationRepository {
-    if (!FakeSpecificationRepository.INSTANCE) {
-      FakeSpecificationRepository.INSTANCE = new FakeSpecificationRepository();
-    }
-
-    return FakeSpecificationRepository.INSTANCE;
-  }
-
-  findByName(name: string): FakeSpecification {
+  public async findByName(name: string): Promise<FakeSpecification> {
     const specification = this.specifications.find(
       (specification) => specification.name === name
     );
     return specification;
   }
 
-  create({ name, description }: ICreateSpecificationDTO): FakeSpecification {
+  public async create({
+    name,
+    description,
+  }: ICreateSpecificationDTO): Promise<FakeSpecification> {
     const specification = new FakeSpecification();
 
     Object.assign(specification, {

@@ -1,9 +1,10 @@
+import { getRepository, Repository } from "typeorm";
+
 import IUsers from "@modules/accounts/users/model/IUsers";
 import {
   ICreateUserDTO,
   IUsersRepository,
 } from "@modules/accounts/users/repositories/IUsersRepository";
-import { getRepository, Repository } from "typeorm";
 
 import { User } from "../entities/User";
 

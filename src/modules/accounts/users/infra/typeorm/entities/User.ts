@@ -1,4 +1,3 @@
-import IUsers from "@modules/accounts/users/model/IUsers";
 import {
   Column,
   CreateDateColumn,
@@ -6,6 +5,8 @@ import {
   PrimaryColumn,
   UpdateDateColumn,
 } from "typeorm";
+
+import IUsers from "@modules/accounts/users/model/IUsers";
 
 @Entity("users")
 class User implements IUsers {

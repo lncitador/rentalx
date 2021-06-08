@@ -1,10 +1,11 @@
-import ICategory from "@modules/cars/categories/model/ICategory";
 import {
   Column,
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
 } from "typeorm";
+
+import ICategory from "@modules/cars/categories/model/ICategory";
 
 @Entity("categories")
 class Category implements ICategory {

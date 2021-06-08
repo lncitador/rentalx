@@ -5,21 +5,7 @@ import {
 import { FakeCategory } from "../entities/FakeCategory";
 
 class FakeCategoriesRepository implements ICategoriesRepository {
-  private categories: FakeCategory[];
-
-  private static INSTANCE: FakeCategoriesRepository;
-
-  private constructor() {
-    this.categories = [];
-  }
-
-  public static getInstance(): FakeCategoriesRepository {
-    if (!FakeCategoriesRepository.INSTANCE) {
-      FakeCategoriesRepository.INSTANCE = new FakeCategoriesRepository();
-    }
-
-    return FakeCategoriesRepository.INSTANCE;
-  }
+  private categories: FakeCategory[] = [];
 
   public async create({
     name,

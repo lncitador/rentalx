@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { inject, injectable } from "tsyringe";
 
 import { AppError } from "@shared/errors/AppError";
@@ -22,8 +23,6 @@ class UpdateUserAvatarService {
   ) {}
   public async execute({ user_id, avatar_file }: IRequest): Promise<IUsers> {
     const user = await this.usersRepository.findById(user_id);
-
-    console.log(user);
 
     if (!user) {
       throw new AppError("Only authenticated user can change avatar.", 401);

@@ -1,9 +1,10 @@
+import "reflect-metadata";
 import { inject, injectable } from "tsyringe";
 
 import { AppError } from "@shared/errors/AppError";
 
-import IHashProvider from "../providers/models/IHashProvider";
 import IUsers from "../model/IUsers";
+import IHashProvider from "../providers/models/IHashProvider";
 import { IUsersRepository } from "../repositories/IUsersRepository";
 
 interface IRequest {
