@@ -1,5 +1,7 @@
 # Rentalx Entities
 
+![diagram](diagram.png)
+
 ## Registration Car
 
   **Functional Requirement**
