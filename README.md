@@ -8,7 +8,6 @@
   🚥
 
     * it should be able to register car
-    * it should be able list categories
 
   **Non-Functional Requirement**
     🏗

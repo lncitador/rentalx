@@ -1,9 +1,9 @@
 import { UsersRepository } from "@modules/accounts/users/infra/typeorm/repositories/UsersRepository";
 import { IUsersRepository } from "@modules/accounts/users/repositories/IUsersRepository";
-import { CategoriesRepository } from "@modules/cars/categories/infra/typeorm/repositories/CategoriesRepository";
-import { ICategoriesRepository } from "@modules/cars/categories/repositories/ICategoriesRepository";
-import { SpecificationRepository } from "@modules/cars/specifications/infra/typeorm/repositories/SpecificationRepository";
-import { ISpecificationRepository } from "@modules/cars/specifications/repositories/ISpecificationRepository";
+import { CategoriesRepository } from "@modules/car/categories/infra/typeorm/repositories/CategoriesRepository";
+import { ICategoriesRepository } from "@modules/car/categories/repositories/ICategoriesRepository";
+import { SpecificationRepository } from "@modules/car/specifications/infra/typeorm/repositories/SpecificationRepository";
+import { ISpecificationRepository } from "@modules/car/specifications/repositories/ISpecificationRepository";
 import { container } from "tsyringe";
 
 import "@modules/accounts/users/providers";

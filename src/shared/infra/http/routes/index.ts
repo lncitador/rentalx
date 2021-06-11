@@ -1,8 +1,9 @@
+import { Router } from "express";
+
 import { authenticateUserRouter } from "@modules/accounts/authenticate/infra/routes/authenticateUser.routes";
 import { usersRouter } from "@modules/accounts/users/infra/http/routes/users.routes";
-import { categoriesRouter } from "@modules/cars/categories/infra/http/routes/categories.routes";
-import { specificationsRouter } from "@modules/cars/specifications/infra/http/routes/specifications.routes";
-import { Router } from "express";
+import { categoriesRouter } from "@modules/car/categories/infra/http/routes/categories.routes";
+import { specificationsRouter } from "@modules/car/specifications/infra/http/routes/specifications.routes";
 
 const routes = Router();
 
