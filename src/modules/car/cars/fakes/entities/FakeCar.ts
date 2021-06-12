@@ -18,6 +18,9 @@ class FakeCar implements ICars {
   constructor() {
     if (!this.id) {
       this.id = uuidV4();
+      this.available = true;
+      this.created_at = new Date();
+      this.updated_at = new Date();
     }
   }
 }

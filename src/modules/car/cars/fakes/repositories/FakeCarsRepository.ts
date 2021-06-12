@@ -8,6 +8,12 @@ import { FakeCar } from "../entities/FakeCar";
 class FakeCarsRepository implements ICarsRepository {
   private cars: FakeCar[] = [];
 
+  public async findByPlate(license_plate: string): Promise<ICars | undefined> {
+    const car = this.cars.find((car) => car.license_plate === license_plate);
+
+    return car;
+  }
+
   public async create({
     name,
     description,

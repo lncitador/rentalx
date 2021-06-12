@@ -1,3 +1,4 @@
+import ICategory from "../../model/ICategory";
 import {
   ICategoriesRepository,
   ICreateCategoryDTO,
@@ -6,6 +7,12 @@ import { FakeCategory } from "../entities/FakeCategory";
 
 class FakeCategoriesRepository implements ICategoriesRepository {
   private categories: FakeCategory[] = [];
+
+  public async findById(id: string): Promise<ICategory | undefined> {
+    const category = this.categories.find((category) => category.id === id);
+
+    return category;
+  }
 
   public async create({
     name,

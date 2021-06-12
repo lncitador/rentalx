@@ -21,6 +21,7 @@ interface ICarsRepository {
     fine_amount,
     category_id,
   }: ICreateCarDRO): Promise<ICars>;
+  findByPlate(license_plate: string): Promise<ICars | undefined>;
 }
 
 export { ICarsRepository, ICreateCarDRO };
