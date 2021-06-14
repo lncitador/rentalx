@@ -20,10 +20,10 @@ interface IRequest {
 @injectable()
 class CreateCarService {
   constructor(
-    @inject("")
+    @inject("CarsRepository")
     private carsRepository: ICarsRepository,
 
-    @inject("")
+    @inject("CategoriesRepository")
     private categoriesRepository: ICategoriesRepository
   ) {}
   public async execute({
