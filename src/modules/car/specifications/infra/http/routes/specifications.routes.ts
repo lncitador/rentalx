@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import ensureAutheticated from "@modules/accounts/authenticate/infra/middlewares/ensureAuthenticate";
+import ensureAutheticated from "@shared/infra/http/middlewares/ensureAuthenticate";
 
 import CreateSpecificationController from "../controllers/CreateSpecificationController";
 
