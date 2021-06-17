@@ -2,6 +2,7 @@ import { Router } from "express";
 import multer from "multer";
 
 import uploadConfig from "@config/Upload";
+import { ensureAdmin } from "@shared/infra/http/middlewares/ensureAdmin";
 import ensureAutheticated from "@shared/infra/http/middlewares/ensureAuthenticate";
 
 import CreateCategoryController from "../controllers/CreateCategoryController";
@@ -18,7 +19,7 @@ const upload = multer(uploadConfig);
 
 categoriesRouter.get("/", listCategoryController.handle);
 
-categoriesRouter.use(ensureAutheticated);
+categoriesRouter.use(ensureAutheticated, ensureAdmin);
 
 categoriesRouter.post("/", createCategoryController.handle);
 
