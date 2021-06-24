@@ -17,9 +17,9 @@
   **Business Rules**
     💼
 
-    - [ ] it should not be able to register a car with the same license plate exist!
-    - [ ] it should not be able to change a license plate of a registered car!
-    - [ ] it should not be able to make a registration of a car without being a user administrator
+    - [x] it should not be able to register a car with the same license plate exist!
+    - [x] it should not be able to change a license plate of a registered car!
+    - [x] it should not be able to make a registration of a car without being a user administrator
 
 ## List Cars
 
