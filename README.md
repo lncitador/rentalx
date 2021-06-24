@@ -7,7 +7,7 @@
   **Functional Requirement**
   🚥
 
-    - [ x ] it should be able to register car
+    * [x] it should be able to register car
 
   **Non-Functional Requirement**
     🏗
