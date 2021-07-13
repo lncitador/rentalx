@@ -8,7 +8,7 @@
 
 - [x] it should be able to register car
 
-  - the car must be registered by default as avaliable true
+- [x] the car must be registered by default as avaliable true
 
 **Business Rules** 💼
 
