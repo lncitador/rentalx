@@ -3,7 +3,7 @@ import { getRepository, Repository } from "typeorm";
 import ICars from "@modules/car/cars/model/ICars";
 import {
   ICarsRepository,
-  ICreateCarDRO,
+  ICreateCarDTO,
 } from "@modules/car/cars/repositories/ICarsRepository";
 
 import { Cars } from "../entities/Cars";
@@ -14,6 +14,12 @@ class CarsRepository implements ICarsRepository {
   constructor() {
     this.ormRepository = getRepository(Cars);
   }
+  public async findAvailable(): Promise<ICars[]> {
+    const cars = await this.ormRepository.find({ where: { available: true } });
+
+    return cars;
+  }
+
   public async create({
     name,
     description,
@@ -22,7 +28,7 @@ class CarsRepository implements ICarsRepository {
     daily_rate,
     fine_amount,
     category_id,
-  }: ICreateCarDRO): Promise<ICars> {
+  }: ICreateCarDTO): Promise<ICars> {
     const car = this.ormRepository.create({
       name,
       description,

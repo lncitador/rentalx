@@ -1,6 +1,6 @@
 import ICars from "../model/ICars";
 
-interface ICreateCarDRO {
+interface ICreateCarDTO {
   id?: string;
   name: string;
   description: string;
@@ -20,8 +20,13 @@ interface ICarsRepository {
     daily_rate,
     fine_amount,
     category_id,
-  }: ICreateCarDRO): Promise<ICars>;
+  }: ICreateCarDTO): Promise<ICars>;
   findByPlate(license_plate: string): Promise<ICars | undefined>;
+  findAvailable(
+    name?: string,
+    brand?: string,
+    category_id?: string
+  ): Promise<ICars[]>;
 }
 
-export { ICarsRepository, ICreateCarDRO };
+export { ICarsRepository, ICreateCarDTO };
