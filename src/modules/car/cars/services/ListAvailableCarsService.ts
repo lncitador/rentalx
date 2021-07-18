@@ -10,7 +10,7 @@ interface IFindAvailableRequest {
 }
 
 @injectable()
-class ListCarsService {
+class ListAvailableCarsService {
   constructor(
     @inject("CarsRepository")
     private carsRepository: ICarsRepository
@@ -29,4 +29,4 @@ class ListCarsService {
   }
 }
 
-export { ListCarsService };
+export { ListAvailableCarsService };

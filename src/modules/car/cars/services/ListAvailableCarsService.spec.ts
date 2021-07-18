@@ -1,17 +1,17 @@
 import { FakeCategoriesRepository } from "@modules/car/categories/fakes/repositories/FakeCategoriesRepository";
 
 import { FakeCarsRepository } from "../fakes/repositories/FakeCarsRepository";
-import { ListCarsService } from "./ListCarsService";
+import { ListAvailableCarsService } from "./ListAvailableCarsService";
 
 let fakeCarsRepository: FakeCarsRepository;
 let fakeCategoriesRepository: FakeCategoriesRepository;
-let listCarsService: ListCarsService;
+let listAvailableCarsService: ListAvailableCarsService;
 
 describe("List Cars", () => {
   beforeEach(() => {
     fakeCarsRepository = new FakeCarsRepository();
     fakeCategoriesRepository = new FakeCategoriesRepository();
-    listCarsService = new ListCarsService(fakeCarsRepository);
+    listAvailableCarsService = new ListAvailableCarsService(fakeCarsRepository);
   });
 
   it("should be able to list available cars", async () => {
@@ -40,7 +40,7 @@ describe("List Cars", () => {
       category_id: category.id,
     });
 
-    const list = await listCarsService.execute({});
+    const list = await listAvailableCarsService.execute({});
 
     expect(list).toEqual([carName, newCarName]);
   });
@@ -61,7 +61,7 @@ describe("List Cars", () => {
       category_id: category.id,
     });
 
-    const list = await listCarsService.execute({ name: carName.name });
+    const list = await listAvailableCarsService.execute({ name: carName.name });
 
     expect(list).toEqual([carName]);
   });
@@ -82,7 +82,9 @@ describe("List Cars", () => {
       category_id: category.id,
     });
 
-    const list = await listCarsService.execute({ brand: carName.brand });
+    const list = await listAvailableCarsService.execute({
+      brand: carName.brand,
+    });
 
     expect(list).toEqual([carName]);
   });
@@ -103,7 +105,9 @@ describe("List Cars", () => {
       category_id: category.id,
     });
 
-    const list = await listCarsService.execute({ category_id: category.id });
+    const list = await listAvailableCarsService.execute({
+      category_id: category.id,
+    });
 
     expect(list).toEqual([carName]);
   });
