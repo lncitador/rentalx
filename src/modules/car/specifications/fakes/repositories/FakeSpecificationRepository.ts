@@ -1,4 +1,3 @@
-import ISpecification from "../../model/ISpecification";
 import {
   ICreateSpecificationDTO,
   ISpecificationRepository,
@@ -8,18 +7,18 @@ import { FakeSpecification } from "../entities/FakeSpecification";
 class FakeSpecificationRepository implements ISpecificationRepository {
   private specifications: FakeSpecification[] = [];
 
-  public async findById(id: string): Promise<ISpecification> {
-    const specification = this.specifications.find(
-      (specification) => specification.id === id
-    );
-    return specification;
-  }
-
   public async findByName(name: string): Promise<FakeSpecification> {
     const specification = this.specifications.find(
       (specification) => specification.name === name
     );
     return specification;
+  }
+
+  public async findByIds(ids: string[]): Promise<FakeSpecification[]> {
+    const specifications = this.specifications.filter((specification) =>
+      ids.includes(specification.id)
+    );
+    return specifications;
   }
 
   public async create({

@@ -44,7 +44,7 @@ describe("Create Car Specification", () => {
 
     const { specifications } = await createCarSpecificationService.execute({
       car_id: car.id,
-      specification_id: specification.id,
+      specification_id: [specification.id],
     });
 
     expect(car).toHaveProperty("specifications");
@@ -60,7 +60,7 @@ describe("Create Car Specification", () => {
     expect(async () => {
       await createCarSpecificationService.execute({
         car_id: "1234567",
-        specification_id: specification.id,
+        specification_id: [specification.id],
       });
     }).rejects.toBeInstanceOf(AppError);
   });
@@ -84,8 +84,43 @@ describe("Create Car Specification", () => {
     expect(async () => {
       await createCarSpecificationService.execute({
         car_id: car.id,
-        specification_id: "1234567",
+        specification_id: ["1234567"],
       });
     }).rejects.toBeInstanceOf(AppError);
+  });
+
+  it("should be able to add more than one new specification to the car", async () => {
+    const category = await fakeCategoriesRepository.create({
+      name: "newCategory",
+      description: "new Category description",
+    });
+
+    const specification1 = await fakeSpecificationRepository.create({
+      name: "newSpecification1",
+      description: "new Specification description",
+    });
+
+    const specification2 = await fakeSpecificationRepository.create({
+      name: "newSpecification2",
+      description: "new Specification description",
+    });
+
+    const car = await fakeCarsRepository.create({
+      name: "carName",
+      description: "description",
+      brand: "newBrand",
+      license_plate: "1234567",
+      daily_rate: 24,
+      fine_amount: 48,
+      category_id: category.id,
+    });
+
+    await createCarSpecificationService.execute({
+      car_id: car.id,
+      specification_id: [specification1.id, specification2.id],
+    });
+
+    expect(car).toHaveProperty("specifications");
+    expect(car.specifications).toStrictEqual([specification1, specification2]);
   });
 });

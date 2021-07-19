@@ -8,7 +8,7 @@ import { ICarsRepository } from "../repositories/ICarsRepository";
 
 interface IRequest {
   car_id: string;
-  specification_id: string;
+  specifications_id: string[];
 }
 
 class CreateCarSpecificationService {
@@ -19,17 +19,19 @@ class CreateCarSpecificationService {
     @inject("specificationRepository")
     private specificationRepository: ISpecificationRepository
   ) {}
-  async execute({ car_id, specification_id }: IRequest): Promise<ICars> {
+  async execute({ car_id, specifications_id }: IRequest): Promise<ICars> {
     const carExists = await this.carsRepository.findById(car_id);
     if (!carExists) throw new AppError("car does not exists");
 
-    const specificationExists = await this.specificationRepository.findById(
-      specification_id
+    const specifications = await this.specificationRepository.findByIds(
+      specifications_id
     );
-    if (!specificationExists)
-      throw new AppError("specification does not exists");
 
-    carExists.specifications = [specificationExists];
+    if (!specifications) throw new AppError("specification does not exists");
+
+    carExists.specifications = specifications;
+
+    console.log(carExists);
 
     const specificationCar = await this.carsRepository.save(carExists);
 
