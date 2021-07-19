@@ -27,6 +27,8 @@ interface ICarsRepository {
     brand?: string,
     category_id?: string
   ): Promise<ICars[]>;
+  findById(id: string): Promise<ICars>;
+  save(car: ICars): Promise<ICars>;
 }
 
 export { ICarsRepository, ICreateCarDTO };

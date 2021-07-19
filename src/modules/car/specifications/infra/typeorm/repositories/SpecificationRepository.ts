@@ -1,5 +1,6 @@
 import { getRepository, Repository } from "typeorm";
 
+import ISpecification from "@modules/car/specifications/model/ISpecification";
 import {
   ICreateSpecificationDTO,
   ISpecificationRepository,
@@ -12,6 +13,13 @@ class SpecificationRepository implements ISpecificationRepository {
   constructor() {
     this.ormRepository = getRepository(Specification);
   }
+
+  public async findById(id: string): Promise<ISpecification> {
+    const specification = await this.ormRepository.findOne({ where: { id } });
+
+    return specification;
+  }
+
   public async findByName(name: string): Promise<Specification> {
     const specification = await this.ormRepository.findOne({ name });
     return specification;

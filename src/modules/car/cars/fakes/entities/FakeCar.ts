@@ -1,5 +1,7 @@
 import { v4 as uuidV4 } from "uuid";
 
+import ISpecification from "@modules/car/specifications/model/ISpecification";
+
 import ICars from "../../model/ICars";
 
 class FakeCar implements ICars {
@@ -11,6 +13,7 @@ class FakeCar implements ICars {
   license_plate: string;
   fine_amount: number;
   brand: string;
+  specifications: ISpecification[];
   category_id: string;
   created_at: Date;
   updated_at: Date;

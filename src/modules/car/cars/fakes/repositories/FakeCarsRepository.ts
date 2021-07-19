@@ -1,3 +1,5 @@
+import { User } from "@modules/accounts/users/infra/typeorm/entities/User";
+
 import ICars from "../../model/ICars";
 import {
   ICarsRepository,
@@ -7,6 +9,20 @@ import { FakeCar } from "../entities/FakeCar";
 
 class FakeCarsRepository implements ICarsRepository {
   private cars: FakeCar[] = [];
+
+  public async save(car: ICars): Promise<ICars> {
+    const findIndex = this.cars.findIndex((findCar) => findCar.id === car.id);
+
+    this.cars[findIndex] = car;
+
+    return car;
+  }
+
+  public async findById(id: string): Promise<ICars> {
+    const car = this.cars.find((car) => car.id === id);
+
+    return car;
+  }
 
   public async findAvailable(
     name?: string,

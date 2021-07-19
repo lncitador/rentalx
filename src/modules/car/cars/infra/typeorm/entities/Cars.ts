@@ -2,11 +2,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 
 import ICars from "@modules/car/cars/model/ICars";
+import { Specification } from "@modules/car/specifications/infra/typeorm/entities/Specification";
 
 @Entity("cars")
 class Cars implements ICars {
@@ -36,6 +39,14 @@ class Cars implements ICars {
 
   @Column()
   category_id: string;
+
+  @ManyToMany(() => Specification)
+  @JoinTable({
+    name: "specifications_cars",
+    joinColumns: [{ name: "car_id" }],
+    inverseJoinColumns: [{ name: "specification_id" }],
+  })
+  specifications: Specification[];
 
   @CreateDateColumn()
   created_at: Date;

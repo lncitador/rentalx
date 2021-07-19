@@ -14,6 +14,21 @@ class CarsRepository implements ICarsRepository {
   constructor() {
     this.ormRepository = getRepository(Cars);
   }
+
+  public async save(car: ICars): Promise<ICars> {
+    await this.ormRepository.save(car);
+
+    return car;
+  }
+
+  public async findById(id: string): Promise<ICars> {
+    const car = await this.ormRepository.findOne({
+      where: { id },
+    });
+
+    return car;
+  }
+
   public async findAvailable(
     name?: string,
     brand?: string,
@@ -24,15 +39,15 @@ class CarsRepository implements ICarsRepository {
       .where("available = :available", { available: true });
 
     if (name) {
-      carsQuery.andWhere("c.name = :name", { name });
+      carsQuery.andWhere("name = :name", { name });
     }
 
     if (brand) {
-      carsQuery.andWhere("c.brand = :brand", { brand });
+      carsQuery.andWhere("brand = :brand", { brand });
     }
 
     if (category_id) {
-      carsQuery.andWhere("c.category_id = :category_id", { category_id });
+      carsQuery.andWhere("category_id = :category_id", { category_id });
     }
 
     const cars = await carsQuery.getMany();

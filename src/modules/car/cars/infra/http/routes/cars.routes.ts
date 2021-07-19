@@ -11,7 +11,7 @@ const carRouter = Router();
 const createCarsController = new CreateCarsController();
 const listAvailableCarsController = new ListAvailableCarsController();
 
-carRouter.get("/", listAvailableCarsController.handle);
+carRouter.get("/available", listAvailableCarsController.handle);
 
 carRouter.post(
   "/",
