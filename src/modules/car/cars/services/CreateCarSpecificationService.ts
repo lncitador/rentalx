@@ -1,4 +1,4 @@
-import { inject } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 
 import { ISpecificationRepository } from "@modules/car/specifications/repositories/ISpecificationRepository";
 import { AppError } from "@shared/errors/AppError";
@@ -11,12 +11,13 @@ interface IRequest {
   specifications_id: string[];
 }
 
+@injectable()
 class CreateCarSpecificationService {
   constructor(
-    @inject("carsRepository")
+    @inject("CarsRepository")
     private carsRepository: ICarsRepository,
 
-    @inject("specificationRepository")
+    @inject("SpecificationRepository")
     private specificationRepository: ISpecificationRepository
   ) {}
   async execute({ car_id, specifications_id }: IRequest): Promise<ICars> {
@@ -30,8 +31,6 @@ class CreateCarSpecificationService {
     if (!specifications) throw new AppError("specification does not exists");
 
     carExists.specifications = specifications;
-
-    console.log(carExists);
 
     const specificationCar = await this.carsRepository.save(carExists);
 

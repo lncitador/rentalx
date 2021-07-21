@@ -42,7 +42,7 @@ class Cars implements ICars {
 
   @ManyToMany(() => Specification)
   @JoinTable({
-    name: "specifications_cars",
+    name: "specification_cars",
     joinColumns: [{ name: "car_id" }],
     inverseJoinColumns: [{ name: "specification_id" }],
   })

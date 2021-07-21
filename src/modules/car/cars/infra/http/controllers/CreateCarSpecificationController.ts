@@ -8,11 +8,11 @@ class CreateCarSpecificationController {
     const { id } = request.params;
     const { specifications_id } = request.body;
 
-    const createCarSpecificationUseCase = container.resolve(
+    const createCarSpecificationService = container.resolve(
       CreateCarSpecificationService
     );
 
-    const cars = await createCarSpecificationUseCase.execute({
+    const cars = await createCarSpecificationService.execute({
       car_id: id,
       specifications_id,
     });
