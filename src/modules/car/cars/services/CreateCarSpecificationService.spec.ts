@@ -44,8 +44,10 @@ describe("Create Car Specification", () => {
 
     const { specifications } = await createCarSpecificationService.execute({
       car_id: car.id,
-      specification_id: [specification.id],
+      specifications_id: [specification.id],
     });
+
+    console.log(car);
 
     expect(car).toHaveProperty("specifications");
     expect(specifications).toStrictEqual([specification]);
@@ -60,7 +62,7 @@ describe("Create Car Specification", () => {
     expect(async () => {
       await createCarSpecificationService.execute({
         car_id: "1234567",
-        specification_id: [specification.id],
+        specifications_id: [specification.id],
       });
     }).rejects.toBeInstanceOf(AppError);
   });
@@ -84,7 +86,7 @@ describe("Create Car Specification", () => {
     expect(async () => {
       await createCarSpecificationService.execute({
         car_id: car.id,
-        specification_id: ["1234567"],
+        specifications_id: ["1234567"],
       });
     }).rejects.toBeInstanceOf(AppError);
   });
@@ -117,7 +119,7 @@ describe("Create Car Specification", () => {
 
     await createCarSpecificationService.execute({
       car_id: car.id,
-      specification_id: [specification1.id, specification2.id],
+      specifications_id: [specification1.id, specification2.id],
     });
 
     expect(car).toHaveProperty("specifications");
