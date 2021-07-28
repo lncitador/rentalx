@@ -1,5 +1,3 @@
-import { User } from "@modules/accounts/users/infra/typeorm/entities/User";
-
 import ICars from "../../model/ICars";
 import {
   ICarsRepository,
@@ -67,8 +65,6 @@ class FakeCarsRepository implements ICarsRepository {
       daily_rate,
       fine_amount,
       category_id,
-      created_at: new Date(),
-      updated_at: new Date(),
     });
 
     this.cars.push(car);
