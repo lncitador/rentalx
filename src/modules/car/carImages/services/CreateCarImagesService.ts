@@ -17,7 +17,7 @@ class CreateCarImagesService {
     @inject("CarImagesRepository")
     private carImagesRepository: ICarImagesRepository,
 
-    @inject("CarImagesRepository")
+    @inject("CarsRepository")
     private carsRepository: ICarsRepository
   ) {}
 
