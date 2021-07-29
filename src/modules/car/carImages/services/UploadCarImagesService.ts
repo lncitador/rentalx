@@ -3,16 +3,15 @@ import { inject, injectable } from "tsyringe";
 import { ICarsRepository } from "@modules/car/cars/repositories/ICarsRepository";
 import { AppError } from "@shared/errors/AppError";
 
-import ICarImages from "../model/ICarImages";
 import { ICarImagesRepository } from "../repositories/ICarImagesRepository";
 
 interface IRequest {
   car_id: string;
-  image_name: string;
+  images_name: string[];
 }
 
 @injectable()
-class CreateCarImagesService {
+class UploadCarImagesService {
   constructor(
     @inject("CarImagesRepository")
     private carImagesRepository: ICarImagesRepository,
@@ -21,20 +20,17 @@ class CreateCarImagesService {
     private carsRepository: ICarsRepository
   ) {}
 
-  public async execute({ car_id, image_name }: IRequest): Promise<ICarImages> {
+  public async execute({ car_id, images_name }: IRequest): Promise<void> {
     const carExist = await this.carsRepository.findById(car_id);
 
     if (!carExist) {
       throw new AppError("Car not exists!");
     }
 
-    const imageCar = await this.carImagesRepository.create({
-      car_id,
-      image_name,
+    images_name.map(async (image_name) => {
+      await this.carImagesRepository.create({ car_id, image_name });
     });
-
-    return imageCar;
   }
 }
 
-export { CreateCarImagesService };
+export { UploadCarImagesService };

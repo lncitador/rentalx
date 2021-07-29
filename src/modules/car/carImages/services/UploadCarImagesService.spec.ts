@@ -3,19 +3,19 @@ import { FakeCategoriesRepository } from "@modules/car/categories/fakes/reposito
 import { AppError } from "@shared/errors/AppError";
 
 import { FakeCarImagesRepository } from "../fakes/repositories/FakeCarImagesRepository";
-import { CreateCarImagesService } from "./CreateCarImagesService";
+import { UploadCarImagesService } from "./UploadCarImagesService";
 
 let fakeCarImagesRepository: FakeCarImagesRepository;
 let fakeCarsRepository: FakeCarsRepository;
 let fakeCategoriesRepository: FakeCategoriesRepository;
-let createCarImagesService: CreateCarImagesService;
+let uploadCarImagesService: UploadCarImagesService;
 
 describe("Create Images Car", () => {
   beforeEach(() => {
     fakeCarImagesRepository = new FakeCarImagesRepository();
     fakeCarsRepository = new FakeCarsRepository();
     fakeCategoriesRepository = new FakeCategoriesRepository();
-    createCarImagesService = new CreateCarImagesService(
+    uploadCarImagesService = new UploadCarImagesService(
       fakeCarImagesRepository,
       fakeCarsRepository
     );
@@ -37,7 +37,7 @@ describe("Create Images Car", () => {
       category_id: category.id,
     });
 
-    const imageCar = await createCarImagesService.execute({
+    const imageCar = await uploadCarImagesService.execute({
       car_id: car.id,
       image_name: "name-image.jpg",
     });
@@ -47,7 +47,7 @@ describe("Create Images Car", () => {
 
   it("should not be able to add image to a non-existent car", async () => {
     expect(async () => {
-      await createCarImagesService.execute({
+      await uploadCarImagesService.execute({
         car_id: "12345",
         image_name: "name-image.jpg",
       });
