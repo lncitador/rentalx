@@ -28,7 +28,7 @@ class CreateCarSpecificationService {
       specifications_id
     );
 
-    if (!specifications) throw new AppError("specification does not exists");
+    if (!specifications[0]) throw new AppError("specification does not exists");
 
     carExists.specifications = specifications;
 

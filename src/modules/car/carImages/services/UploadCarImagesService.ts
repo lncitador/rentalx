@@ -20,7 +20,7 @@ class UploadCarImagesService {
     private carsRepository: ICarsRepository
   ) {}
 
-  public async execute({ car_id, images_name }: IRequest): Promise<void> {
+  public async execute({ car_id, images_name }: IRequest): Promise<IRequest> {
     const carExist = await this.carsRepository.findById(car_id);
 
     if (!carExist) {
@@ -30,6 +30,11 @@ class UploadCarImagesService {
     images_name.map(async (image_name) => {
       await this.carImagesRepository.create({ car_id, image_name });
     });
+
+    return {
+      car_id,
+      images_name,
+    };
   }
 }
 

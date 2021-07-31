@@ -42,7 +42,7 @@ describe("Create Images Car", () => {
       images_name: ["name-image.jpg"],
     });
 
-    expect(imageCar).toBe(["name-image.jpg"]);
+    expect(imageCar.images_name).toStrictEqual(["name-image.jpg"]);
   });
 
   it("should not be able to add image to a non-existent car", async () => {
