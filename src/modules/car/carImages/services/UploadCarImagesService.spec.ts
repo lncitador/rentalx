@@ -39,17 +39,17 @@ describe("Create Images Car", () => {
 
     const imageCar = await uploadCarImagesService.execute({
       car_id: car.id,
-      image_name: "name-image.jpg",
+      images_name: ["name-image.jpg"],
     });
 
-    expect(imageCar.image_name).toBe("name-image.jpg");
+    expect(imageCar).toBe(["name-image.jpg"]);
   });
 
   it("should not be able to add image to a non-existent car", async () => {
     expect(async () => {
       await uploadCarImagesService.execute({
         car_id: "12345",
-        image_name: "name-image.jpg",
+        images_name: ["name-image.jpg"],
       });
     }).rejects.toBeInstanceOf(AppError);
   });
