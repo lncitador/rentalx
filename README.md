@@ -20,10 +20,10 @@
 
 **Functional Requirement** 🚥
 
-- [ ] should be able to list all cars available
-- [ ] should be able filter the cars by category
-- [ ] should be able filter the cars by brandy
-- [ ] should be able filter the cars by name
+- [x] should be able to list all cars available
+- [x] should be able filter the cars by category
+- [x] should be able filter the cars by brandy
+- [x] should be able filter the cars by name
 
 **Business Rules** 💼
 
@@ -33,8 +33,8 @@
 
 **Functional Requirement** 🚥
 
-- [ ] it should be able create specification car
-- [ ] it should be able list all specification
+- [x] it should be able create specification car
+- [x] it should be able list all specification
 - [ ] it should be able list all cars
 
   <!-- **Non-Functional Requirement**
@@ -54,26 +54,26 @@
   **Functional Requirement**
   🚥
 
-- [ ] it should be able to register an image to a car
+- [x] it should be able to register an image to a car
 
   **Non-Functional Requirement**
     🏗
 
-- [ ]  use multer for image upload
+- [x]  use multer for image upload
 
   **Business Rules**
     💼
 
-- [ ] it should not be able to register an image for an unregistered car
-- [ ] it should is able to save more than one image in the seat for a car
-- [ ] it should not be able to make a registration of a car without being a user administrator
+- [x] it should not be able to register an image for an unregistered car
+- [x] it should is able to save more than one image in the seat for a car
+- [x] it should not be able to make a registration of a car without being a user administrator
 
 ## Car Rental
 
   **Functional Requirement**
   🚥
 
-- [ ] it should be able to resgister rent
+- [x] it should be able to resgister rent
   
   <!-- **Non-Functional Requirement**
 
