@@ -25,25 +25,44 @@ class CreateRentalsService {
   public async execute({
     car_id,
     user_id,
-    start_date,
-    end_date,
     expected_return_date,
-    total,
   }: IRentalsDTO): Promise<IRentals> {
     const carExist = await this.carsRepository.findById(car_id);
-    if (!carExist) throw new AppError("Car nothing exists!");
+
+    if (!carExist) {
+      throw new AppError("Car nothing exists!");
+    }
+
+    const carUnavailable = await this.rentalsRepository.findOpenRentalByCar(
+      car_id
+    );
+
+    if (carUnavailable) {
+      throw new AppError("Car is unavailable!");
+    }
 
     const userExist = await this.usersRepository.findById(user_id);
-    if (!userExist) throw new AppError("User nothing exists!");
+
+    if (!userExist) {
+      throw new AppError("User nothing exists!");
+    }
+
+    const rentalOpenToUser = await this.rentalsRepository.findOpenRentalByUser(
+      user_id
+    );
+
+    if (rentalOpenToUser) {
+      throw new AppError("There's a rental in progress for user!");
+    }
 
     const rental = this.rentalsRepository.create({
       car_id,
       user_id,
-      start_date,
-      end_date,
       expected_return_date,
-      total,
     });
+
+    carExist.available = false;
+    await this.carsRepository.save(carExist);
 
     return rental;
   }

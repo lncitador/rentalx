@@ -25,6 +25,22 @@ class FakeRentalsRepository implements IRentalsRepository {
 
     return rental;
   }
+
+  public async findOpenRentalByCar(car_id: string): Promise<IRentals> {
+    const openRentalByCar = this.rentals.find(
+      (rental) => rental.car_id === car_id && rental.end_date === null
+    );
+
+    return openRentalByCar;
+  }
+
+  public async findOpenRentalByUser(user_id: string): Promise<IRentals> {
+    const openRentalByUser = this.rentals.find(
+      (rental) => rental.user_id === user_id && rental.end_date === null
+    );
+
+    return openRentalByUser;
+  }
 }
 
 export { FakeRentalsRepository };

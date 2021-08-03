@@ -54,10 +54,7 @@ describe("Create Rental", () => {
     const data: IRentalsDTO = {
       car_id: car.id,
       user_id: user.id,
-      start_date: new Date(2021, 7, 1),
-      end_date: new Date(2021, 7, 4),
       expected_return_date: new Date(2021, 7, 4),
-      total: 200,
     };
 
     const rental = await createRentalsService.execute(data);
@@ -76,11 +73,55 @@ describe("Create Rental", () => {
     const data: IRentalsDTO = {
       car_id: "12345",
       user_id: user.id,
-      start_date: new Date(2021, 7, 1),
-      end_date: new Date(2021, 7, 4),
       expected_return_date: new Date(2021, 7, 4),
-      total: 200,
     };
+
+    expect(async () => {
+      await createRentalsService.execute(data);
+    }).rejects.toBeInstanceOf(AppError);
+  });
+
+  it("should not be able to create a rental for unavailable car", async () => {
+    const user = await fakeUsersRepository.create({
+      name: "john doe",
+      driver_license: "123456",
+      email: "johndoe@mail.com",
+      password: "12345",
+    });
+
+    const category = await fakeCategoriesRepository.create({
+      name: "newCategory",
+      description: "new Category description",
+    });
+
+    const car = await fakeCarsRepository.create({
+      name: "carName",
+      description: "description",
+      brand: "newBrand",
+      license_plate: "1234567",
+      daily_rate: 24,
+      fine_amount: 48,
+      category_id: category.id,
+    });
+
+    const data: IRentalsDTO = {
+      car_id: car.id,
+      user_id: user.id,
+      expected_return_date: new Date(2021, 7, 4),
+    };
+
+    const user2 = await fakeUsersRepository.create({
+      name: "john doe",
+      driver_license: "123456",
+      email: "doejohn@mail.com",
+      password: "12345",
+    });
+
+    await createRentalsService.execute({
+      car_id: car.id,
+      user_id: user2.id,
+      expected_return_date: new Date(2021, 7, 4),
+    });
 
     expect(async () => {
       await createRentalsService.execute(data);
@@ -106,10 +147,7 @@ describe("Create Rental", () => {
     const data: IRentalsDTO = {
       car_id: car.id,
       user_id: "12345",
-      start_date: new Date(2021, 7, 1),
-      end_date: new Date(2021, 7, 4),
       expected_return_date: new Date(2021, 7, 4),
-      total: 200,
     };
 
     expect(async () => {

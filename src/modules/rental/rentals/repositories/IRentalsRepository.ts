@@ -12,6 +12,8 @@ interface IRentalsRepository {
     user_id,
     expected_return_date,
   }: IRentalsDTO): Promise<IRentals>;
+  findOpenRentalByCar(car_id: string): Promise<IRentals>;
+  findOpenRentalByUser(user_id: string): Promise<IRentals>;
 }
 
 export { IRentalsRepository, IRentalsDTO };
