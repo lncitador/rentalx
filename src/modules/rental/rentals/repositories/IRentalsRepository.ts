@@ -12,6 +12,7 @@ interface IRentalsRepository {
     user_id,
     expected_return_date,
   }: IRentalsDTO): Promise<IRentals>;
+  save(rental: IRentals): Promise<IRentals>;
   findOpenRentalByCar(car_id: string): Promise<IRentals>;
   findOpenRentalByUser(user_id: string): Promise<IRentals>;
 }

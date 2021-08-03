@@ -26,9 +26,17 @@ class FakeRentalsRepository implements IRentalsRepository {
     return rental;
   }
 
+  public async save(rental: IRentals): Promise<IRentals> {
+    const rentIndex = this.rentals.findIndex((rent) => rent.id === rental.id);
+
+    this.rentals[rentIndex] = rental;
+
+    return rental;
+  }
+
   public async findOpenRentalByCar(car_id: string): Promise<IRentals> {
     const openRentalByCar = this.rentals.find(
-      (rental) => rental.car_id === car_id && rental.end_date === null
+      (rental) => rental.car_id === car_id && !rental.end_date
     );
 
     return openRentalByCar;
@@ -36,7 +44,7 @@ class FakeRentalsRepository implements IRentalsRepository {
 
   public async findOpenRentalByUser(user_id: string): Promise<IRentals> {
     const openRentalByUser = this.rentals.find(
-      (rental) => rental.user_id === user_id && rental.end_date === null
+      (rental) => rental.user_id === user_id && !rental.end_date
     );
 
     return openRentalByUser;

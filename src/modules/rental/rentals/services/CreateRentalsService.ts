@@ -55,11 +55,14 @@ class CreateRentalsService {
       throw new AppError("There's a rental in progress for user!");
     }
 
-    const rental = this.rentalsRepository.create({
+    const rental = await this.rentalsRepository.create({
       car_id,
       user_id,
       expected_return_date,
     });
+
+    rental.start_date = new Date();
+    await this.rentalsRepository.save(rental);
 
     carExist.available = false;
     await this.carsRepository.save(carExist);
