@@ -6,24 +6,14 @@ import { CreateRentalsService } from "@modules/rental/rentals/services/CreateRen
 
 class CreateRentalsController {
   public async handle(request: Request, response: Response): Promise<Response> {
-    const {
-      car_id,
-      user_id,
-      start_date,
-      end_date,
-      expected_return_date,
-      total,
-    }: IRentalsDTO = request.body;
+    const { car_id, user_id, expected_return_date }: IRentalsDTO = request.body;
 
     const rentalRepository = container.resolve(CreateRentalsService);
 
     const rental = await rentalRepository.execute({
       car_id,
       user_id,
-      start_date,
-      end_date,
       expected_return_date,
-      total,
     });
 
     return response.status(201).json({ rental });

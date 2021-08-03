@@ -18,18 +18,12 @@ class RentalsRepository implements IRentalsRepository {
   public async create({
     car_id,
     user_id,
-    start_date,
-    end_date,
     expected_return_date,
-    total,
   }: IRentalsDTO): Promise<IRentals> {
     const rental = this.ormRepository.create({
       car_id,
       user_id,
-      start_date,
-      end_date,
       expected_return_date,
-      total,
     });
 
     await this.ormRepository.save(rental);
